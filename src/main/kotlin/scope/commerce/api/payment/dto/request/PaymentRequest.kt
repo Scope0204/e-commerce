@@ -1,0 +1,8 @@
+package scope.commerce.api.payment.dto.request
+
+class PaymentRequest {
+    data class Execute(
+        val userId: Long,
+        val orderId: Long
+    )
+}
