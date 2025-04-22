@@ -1,8 +1,8 @@
-package scope.commerce.domain.order.infra.entity;
+package scope.commerce.infra.order.entity;
 
 import jakarta.persistence.*
-import scope.commerce.domain.product.infra.entity.Product
-import scope.commerce.domain.user.infra.entity.UserCoupon
+import scope.commerce.infra.product.entity.Product
+import scope.commerce.infra.user.entity.UserCoupon
 import java.time.LocalDateTime
 
 @Entity

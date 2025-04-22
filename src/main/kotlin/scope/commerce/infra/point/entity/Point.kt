@@ -1,7 +1,7 @@
-package scope.commerce.domain.point.infra.entity
+package scope.commerce.infra.point.entity
 
 import jakarta.persistence.*
-import scope.commerce.domain.user.infra.entity.User
+import scope.commerce.infra.user.entity.User
 
 @Entity
 class Point(

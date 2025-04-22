@@ -1,7 +1,7 @@
-package scope.commerce.domain.user.infra.entity
+package scope.commerce.infra.user.entity
 
 import jakarta.persistence.*
-import scope.commerce.domain.coupon.infra.entity.Coupon
+import scope.commerce.infra.coupon.entity.Coupon
 import java.time.LocalDate
 
 @Entity

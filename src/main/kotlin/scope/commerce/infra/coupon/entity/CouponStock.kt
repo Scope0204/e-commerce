@@ -1,17 +1,17 @@
-package scope.commerce.domain.product.infra.entity
+package scope.commerce.infra.coupon.entity
 
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "product_stock")
-class ProductStock(
+@Table(name = "coupon_stock")
+class CouponStock(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
     @OneToOne
-    @JoinColumn(name = "product_id", nullable = false, unique = true)
-    val product: Product,
-    val quantity: Int,
+    @JoinColumn(name = "coupon_id", nullable = false, unique = true)
+    val coupon: Coupon,
+    val remainingQuantity: Int,
     var updatedAt: LocalDateTime = LocalDateTime.now()
 )

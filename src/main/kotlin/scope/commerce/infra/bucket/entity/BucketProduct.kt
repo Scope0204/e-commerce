@@ -1,7 +1,7 @@
-package scope.commerce.domain.bucket.infra.entity;
+package scope.commerce.infra.bucket.entity;
 
 import jakarta.persistence.*
-import scope.commerce.domain.product.infra.entity.Product
+import scope.commerce.infra.product.entity.Product
 
 @Entity
 @Table(name = "bucket_product")

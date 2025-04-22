@@ -1,7 +1,7 @@
-package scope.commerce.domain.payment.infra.entity;
+package scope.commerce.infra.payment.entity;
 
 import jakarta.persistence.*
-import scope.commerce.domain.order.infra.entity.Order
+import scope.commerce.infra.order.entity.Order
 import java.time.LocalDateTime
 
 @Entity

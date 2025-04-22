@@ -1,9 +1,9 @@
-package scope.commerce.domain.order.infra.entity;
+package scope.commerce.infra.order.entity;
 
 import jakarta.persistence.Entity
 
 import jakarta.persistence.*
-import scope.commerce.domain.user.infra.entity.User
+import scope.commerce.infra.user.entity.User
 import java.time.LocalDateTime
 
 @Entity

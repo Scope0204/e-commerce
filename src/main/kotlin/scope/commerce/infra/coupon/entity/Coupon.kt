@@ -1,4 +1,4 @@
-package scope.commerce.domain.coupon.infra.entity
+package scope.commerce.infra.coupon.entity
 
 import jakarta.persistence.*
 import java.time.LocalDate
