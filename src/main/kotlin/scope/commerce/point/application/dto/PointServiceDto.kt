@@ -1,4 +1,4 @@
-package scope.commerce.point.api.dto
+package scope.commerce.point.application.dto
 
 data class PointServiceDto(
     val userId: Long,

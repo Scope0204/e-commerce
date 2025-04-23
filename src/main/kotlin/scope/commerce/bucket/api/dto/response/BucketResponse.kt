@@ -1,6 +1,6 @@
 package scope.commerce.bucket.api.dto.response
 
-import scope.commerce.bucket.api.dto.BucketServiceDto
+import scope.commerce.bucket.application.dto.BucketServiceDto
 import java.time.LocalDateTime
 
 class BucketResponse {

@@ -1,4 +1,4 @@
-package scope.commerce.product.api.dto
+package scope.commerce.product.application.dto
 
 data class ProductServiceDto(
     val productId: Long,

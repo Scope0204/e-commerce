@@ -1,4 +1,4 @@
-package scope.commerce.coupon.api.dto
+package scope.commerce.coupon.application.dto
 
 import java.time.LocalDate
 

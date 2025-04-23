@@ -1,6 +1,6 @@
 package scope.commerce.coupon.api.dto.response
 
-import scope.commerce.coupon.api.dto.CouponServiceDto
+import scope.commerce.coupon.application.dto.CouponServiceDto
 import java.time.LocalDate
 
 class CouponResponse {

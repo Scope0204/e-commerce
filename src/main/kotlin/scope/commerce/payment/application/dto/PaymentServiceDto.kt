@@ -1,4 +1,4 @@
-package scope.commerce.payment.api.dto;
+package scope.commerce.payment.application.dto;
 
 import java.time.LocalDateTime
 

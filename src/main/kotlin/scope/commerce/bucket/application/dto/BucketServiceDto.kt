@@ -1,4 +1,4 @@
-package scope.commerce.bucket.api.dto
+package scope.commerce.bucket.application.dto
 
 import java.time.LocalDateTime
 

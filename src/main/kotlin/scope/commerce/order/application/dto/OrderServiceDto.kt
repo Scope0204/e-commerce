@@ -1,4 +1,4 @@
-package scope.commerce.order.api.dto
+package scope.commerce.order.application.dto
 
 import java.time.LocalDateTime
 

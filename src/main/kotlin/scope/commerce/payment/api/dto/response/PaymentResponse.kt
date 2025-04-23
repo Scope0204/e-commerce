@@ -1,6 +1,6 @@
 package scope.commerce.payment.api.dto.response
 
-import scope.commerce.payment.api.dto.PaymentServiceDto
+import scope.commerce.payment.application.dto.PaymentServiceDto
 import java.time.LocalDateTime
 
 class PaymentResponse {

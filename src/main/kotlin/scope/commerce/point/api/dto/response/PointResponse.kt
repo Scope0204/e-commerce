@@ -1,6 +1,6 @@
 package scope.commerce.point.api.dto.response
 
-import scope.commerce.point.api.dto.PointServiceDto
+import scope.commerce.point.application.dto.PointServiceDto
 
 class PointResponse {
     data class Detail(

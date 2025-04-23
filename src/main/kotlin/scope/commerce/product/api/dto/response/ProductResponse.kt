@@ -1,7 +1,7 @@
 package scope.commerce.product.api.dto.response
 
-import scope.commerce.product.api.dto.ProductServiceDto
-import scope.commerce.product.api.dto.RankedProductServiceDto
+import scope.commerce.product.application.dto.ProductServiceDto
+import scope.commerce.product.application.dto.RankedProductServiceDto
 
 class ProductResponse {
     data class Product (

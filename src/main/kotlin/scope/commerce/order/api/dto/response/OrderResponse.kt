@@ -1,6 +1,6 @@
 package scope.commerce.order.api.dto.response
 
-import scope.commerce.order.api.dto.OrderServiceDto
+import scope.commerce.order.application.dto.OrderServiceDto
 import java.time.LocalDateTime
 
 class OrderResponse {
