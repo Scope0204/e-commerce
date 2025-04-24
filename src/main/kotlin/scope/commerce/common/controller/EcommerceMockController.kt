@@ -11,9 +11,9 @@ import scope.commerce.order.api.dto.request.OrderRequest
 import scope.commerce.order.api.dto.response.OrderResponse
 import scope.commerce.payment.api.dto.request.PaymentRequest
 import scope.commerce.payment.api.dto.response.PaymentResponse
-import scope.commerce.point.application.dto.PointServiceDto
-import scope.commerce.point.api.dto.request.PointRequest
-import scope.commerce.point.api.dto.response.PointResponse
+import scope.commerce.point.application.dto.response.PointChargeResponse
+import scope.commerce.point.api.dto.request.PointApiRequest
+import scope.commerce.point.api.dto.response.PointApiResponse
 import scope.commerce.product.application.dto.ProductServiceDto
 import scope.commerce.product.application.dto.RankedProductServiceDto
 import scope.commerce.product.api.dto.response.ProductResponse
@@ -27,31 +27,11 @@ import kotlin.math.ceil
 /**
  * mock api controller
  * - 실제 api 는 각 도메인 컨트롤러에서 담당하도록 한다.
+ * - 구현 완료 시 제거.
  */
-
 @RestController
 @RequestMapping("/api/v1/mock")
 class EcommerceMockController {
-
-    // 잔액을 충전한다
-    @PostMapping("/points/charge")
-    fun chargePoint (
-        @RequestBody chargeRequest : PointRequest.Charge
-    ): ApiResponse<PointResponse.Detail> {
-        // TODO : pointService.charge(chargeRequest.userId, chargeRequest.amount);
-        val responseDto = PointResponse.Detail.from(PointServiceDto(chargeRequest.userId,chargeRequest.amount+2000));
-        return ApiResponse.success(responseDto);
-    }
-
-    // 잔액을 조회한다
-    @GetMapping("/points/{userId}")
-    fun getPoint (
-        @PathVariable userId : Long,
-    ): ApiResponse<PointResponse.Detail> {
-        // TODO : pointService.search(userId);
-        val responseDto = PointResponse.Detail.from(PointServiceDto(1,2000));
-        return ApiResponse.success(responseDto);
-    }
 
     // 단건 상품을 조회한다
     @GetMapping("/products/{productId}")
