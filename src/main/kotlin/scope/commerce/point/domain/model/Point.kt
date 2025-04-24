@@ -1,11 +1,12 @@
 package scope.commerce.point.domain.model
 
 data class Point(
+    val id: Long,
     val userId: Long,
     var amount: Long
 ) {
     fun charge(amountToAdd: Long) {
-        require(amountToAdd > 0) { "충전 금액은 0보다 커야 합니다." }
+        require(amountToAdd >= 1) { "충전 금액은 1 이상이어야 합니다." }
         amount += amountToAdd
     }
 

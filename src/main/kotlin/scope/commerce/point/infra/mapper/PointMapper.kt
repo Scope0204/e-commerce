@@ -5,8 +5,8 @@ import scope.commerce.point.infra.entity.PointEntity
 
 object PointMapper {
     fun toDomain(entity: PointEntity): Point =
-        Point(userId = entity.userId, amount = entity.amount)
+        Point(id = entity.id, userId = entity.userId, amount = entity.amount)
 
     fun toEntity(domain: Point): PointEntity =
-        PointEntity(userId = domain.userId, amount = domain.amount)
+        PointEntity(id = domain.id, userId = domain.userId, amount = domain.amount)
 }
