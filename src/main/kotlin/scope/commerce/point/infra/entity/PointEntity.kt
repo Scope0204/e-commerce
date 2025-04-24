@@ -1,15 +1,14 @@
 package scope.commerce.point.infra.entity
 
 import jakarta.persistence.*
-import scope.commerce.user.infra.entity.User
 
 @Entity
-class Point(
+@Table(name = "point")
+class PointEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0,
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    var user: User,
-    var amount: Int
+    @Column(name = "user_id")
+    var userId: Long,
+    var amount: Long
 )

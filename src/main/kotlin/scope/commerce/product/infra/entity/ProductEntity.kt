@@ -3,11 +3,12 @@ package scope.commerce.product.infra.entity
 import jakarta.persistence.*
 
 @Entity
-class Product(
+@Table(name = "product")
+class ProductEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0,
+    val id: Long = 0,
     var name: String,
-    var price: Int,
-    var quantity: Int
+    var price: Long,
+    var quantity: Long
 )

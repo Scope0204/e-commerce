@@ -4,14 +4,15 @@ import jakarta.persistence.*
 import java.time.LocalDate
 
 @Entity
-class Coupon(
+@Table(name = "coupon")
+class CouponEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0,
+    val id: Long = 0,
     var name: String,
     var discountType: String,
-    var discountValue: Int,
-    var maxDiscountAmount: Int,
-    var maxQuantity: Int,
+    var discountValue: Long,
+    var maxDiscountAmount: Long,
+    var maxQuantity: Long,
     var expiryAt: LocalDate
 )

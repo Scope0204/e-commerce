@@ -1,25 +1,25 @@
 package scope.commerce.order.infra.entity;
 
 import jakarta.persistence.*
-import scope.commerce.product.infra.entity.Product
-import scope.commerce.user.infra.entity.UserCoupon
+import scope.commerce.product.infra.entity.ProductEntity
+import scope.commerce.user.infra.entity.UserCouponEntity
 import java.time.LocalDateTime
 
 @Entity
 @Table(name = "order_coupon")
-class OrderCoupon(
+class OrderCouponEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0,
+    val id: Long = 0,
     @ManyToOne
     @JoinColumn(name = "order_id")
-    var order: Order,
+    var orderEntity: OrderEntity,
     @ManyToOne
     @JoinColumn(name = "product_id")
-    var product: Product,
+    var productEntity: ProductEntity,
     @ManyToOne
     @JoinColumn(name = "user_coupon_id")
-    var userCoupon: UserCoupon,
-    var discountAmount: Int,
+    var userCouponEntity: UserCouponEntity,
+    var discountAmount: Long,
     var appliedAt: LocalDateTime
 )

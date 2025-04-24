@@ -1,17 +1,18 @@
 package scope.commerce.bucket.infra.entity
 
 import jakarta.persistence.*
-import scope.commerce.user.infra.entity.User
+import scope.commerce.user.infra.entity.UserEntity
 import java.time.LocalDateTime
 
 @Entity
-class Bucket(
+@Table(name = "bucket")
+class BucketEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0,
+    val id: Long = 0,
     @ManyToOne
     @JoinColumn(name = "user_id")
-    var user: User,
+    var userEntity: UserEntity,
     var createdAt: LocalDateTime = LocalDateTime.now(),
     var updatedAt: LocalDateTime = LocalDateTime.now()
 )

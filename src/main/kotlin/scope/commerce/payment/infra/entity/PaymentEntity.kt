@@ -1,18 +1,18 @@
 package scope.commerce.payment.infra.entity;
 
 import jakarta.persistence.*
-import scope.commerce.order.infra.entity.Order
+import scope.commerce.order.infra.entity.OrderEntity
 import java.time.LocalDateTime
 
 @Entity
-class Payment(
+class PaymentEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0,
+    val id: Long = 0,
     @ManyToOne
     @JoinColumn(name = "order_id")
-    var order: Order,
-    var paymentAmount: Int,
+    var orderEntity: OrderEntity,
+    var paymentAmount: Long,
     var paymentStatus: String,
     var paymentAt: LocalDateTime
 )

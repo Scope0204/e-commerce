@@ -1,20 +1,20 @@
 package scope.commerce.bucket.infra.entity;
 
 import jakarta.persistence.*
-import scope.commerce.product.infra.entity.Product
+import scope.commerce.product.infra.entity.ProductEntity
 
 @Entity
 @Table(name = "bucket_product")
-class BucketProduct(
+class BucketProductEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0,
+    val id: Long = 0,
     @ManyToOne
     @JoinColumn(name = "bucket_id")
-    var bucket: Bucket,
+    var bucketEntity: BucketEntity,
     @ManyToOne
     @JoinColumn(name = "product_id")
-    var product: Product,
-    var quantity: Int,
-    var unitPrice: Int
+    var productEntity: ProductEntity,
+    var quantity: Long,
+    var unitPrice: Long
 )

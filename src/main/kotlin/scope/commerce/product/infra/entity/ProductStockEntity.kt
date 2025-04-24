@@ -5,13 +5,13 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name = "product_stock")
-class ProductStock(
+class ProductStockEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
     @OneToOne
     @JoinColumn(name = "product_id", nullable = false, unique = true)
-    val product: Product,
+    val productEntity: ProductEntity,
     val quantity: Int,
     var updatedAt: LocalDateTime = LocalDateTime.now()
 )
