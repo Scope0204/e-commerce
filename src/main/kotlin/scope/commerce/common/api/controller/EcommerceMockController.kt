@@ -1,9 +1,9 @@
-package scope.commerce.common.controller
+package scope.commerce.common.api.controller
 
 import org.springframework.web.bind.annotation.*
 import scope.commerce.bucket.api.dto.request.BucketRequest
 import scope.commerce.bucket.api.dto.response.BucketResponse
-import scope.commerce.common.dto.ApiResponse
+import scope.commerce.common.api.response.ApiResponse
 import scope.commerce.coupon.application.dto.CouponServiceDto
 import scope.commerce.coupon.api.dto.request.CouponRequest
 import scope.commerce.coupon.api.dto.response.CouponResponse
@@ -11,9 +11,6 @@ import scope.commerce.order.api.dto.request.OrderRequest
 import scope.commerce.order.api.dto.response.OrderResponse
 import scope.commerce.payment.api.dto.request.PaymentRequest
 import scope.commerce.payment.api.dto.response.PaymentResponse
-import scope.commerce.point.application.dto.response.PointChargeResponse
-import scope.commerce.point.api.dto.request.PointApiRequest
-import scope.commerce.point.api.dto.response.PointApiResponse
 import scope.commerce.product.application.dto.ProductServiceDto
 import scope.commerce.product.application.dto.RankedProductServiceDto
 import scope.commerce.product.api.dto.response.ProductResponse

@@ -1,4 +1,4 @@
-package scope.commerce.common.dto
+package scope.commerce.common.api.response
 
 import org.springframework.http.HttpStatus
 

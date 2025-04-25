@@ -3,7 +3,7 @@ package scope.commerce.point.api.controller
 import io.swagger.v3.oas.annotations.Operation
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
-import scope.commerce.common.dto.ApiResponse
+import scope.commerce.common.api.response.ApiResponse
 import scope.commerce.point.api.dto.request.PointApiRequest
 import scope.commerce.point.api.dto.response.PointApiResponse
 import scope.commerce.point.application.mapper.PointRequestMapper
