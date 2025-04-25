@@ -32,7 +32,7 @@ class PointController(
     }
 
     @Operation(summary = "잔액 조회 API")
-    @PostMapping("/{userId}")
+    @GetMapping("/{userId}")
     fun searchPoint (
         @PathVariable userId : Long,
     ): ApiResponse<PointApiResponse.Detail> {

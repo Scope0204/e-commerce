@@ -1,7 +1,12 @@
 package scope.commerce.point.infra.entity
 
 import jakarta.persistence.*
+import lombok.Getter
+import lombok.NoArgsConstructor
+import scope.commerce.common.infra.entity.BaseEntity
 
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "point", uniqueConstraints = [UniqueConstraint(columnNames = ["user_id"])])
 class PointEntity(
@@ -11,4 +16,4 @@ class PointEntity(
     @Column(name = "user_id")
     var userId: Long,
     var amount: Long
-)
+) : BaseEntity()
