@@ -1,6 +1,5 @@
 package scope.commerce.point.infra.repository.impl
 
-import org.mapstruct.Mapper
 import org.springframework.stereotype.Repository
 import scope.commerce.point.domain.model.Point
 import scope.commerce.point.domain.repository.PointRepository

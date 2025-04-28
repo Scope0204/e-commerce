@@ -20,8 +20,8 @@ class PointController(
     private val pointResponseMapper: PointResponseMapper
     ) {
 
-    @PostMapping("/charge")
     @Operation(summary = "잔액 충전 API")
+    @PostMapping("/charge")
     fun chargePoint(
         @Valid @RequestBody chargeRequest: PointApiRequest.Charge
     ): ApiResponse<PointApiResponse.Detail> {

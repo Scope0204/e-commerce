@@ -1,4 +1,4 @@
-package scope.commerce.point.api.dto.response
+package scope.commerce.point.application.dto.response
 
 interface PointResult {
     val userId: Long
