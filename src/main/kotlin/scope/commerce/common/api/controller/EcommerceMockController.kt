@@ -11,9 +11,9 @@ import scope.commerce.order.api.dto.request.OrderRequest
 import scope.commerce.order.api.dto.response.OrderResponse
 import scope.commerce.payment.api.dto.request.PaymentRequest
 import scope.commerce.payment.api.dto.response.PaymentResponse
-import scope.commerce.product.application.dto.ProductServiceDto
-import scope.commerce.product.application.dto.RankedProductServiceDto
-import scope.commerce.product.api.dto.response.ProductResponse
+import scope.commerce.product.application.dto.response.ProductQueryResponse
+import scope.commerce.product.application.dto.response.RankedProductQueryResponse
+import scope.commerce.product.api.dto.response.ProductApiResponse
 import scope.commerce.bucket.application.dto.BucketServiceDto
 import scope.commerce.order.application.dto.OrderServiceDto
 import scope.commerce.payment.application.dto.PaymentServiceDto
@@ -29,53 +29,6 @@ import kotlin.math.ceil
 @RestController
 @RequestMapping("/api/v1/mock")
 class EcommerceMockController {
-
-    // 단건 상품을 조회한다
-    @GetMapping("/products/{productId}")
-    fun getProduct (
-        @PathVariable productId : Long,
-    ): ApiResponse<ProductResponse.Product> {
-        // TODO : productService.search(productId);
-        val responseDto = ProductResponse.Product.from(ProductServiceDto(productId,"oreo", 10000, 10));
-        return ApiResponse.success(responseDto);
-    }
-
-    // 상품 목록을 조회한다
-    @GetMapping("/products")
-    fun getProducts (
-        @RequestParam(defaultValue = "1") page: Int,
-        @RequestParam(defaultValue = "10") size: Int
-    ): ApiResponse<List<ProductResponse.Product>> {
-        // TODO : productService.searchList(productId, page, size);
-        val mockProducts = listOf(
-            ProductServiceDto(1, "oreo", 10000, 10),
-            ProductServiceDto(2, "chips", 5000, 20),
-            ProductServiceDto(3, "cola", 2000, 15)
-        )
-        val responseDto = mockProducts.map { ProductResponse.Product.from(it)};
-        // 페이징 정보 생성
-        val pagination = ApiResponse.Pagination(
-            page = page,
-            size = size,
-            totalElements = 20, // 예시. 실제로는 서비스에서 토탈 갯수를 제공.
-            totalPages = ceil((20 / size).toDouble())
-        )
-        return ApiResponse.success(responseDto,pagination);
-    }
-
-    // 상위 상품 목록 3개를 조회한다
-    @GetMapping("/products/ranking")
-    fun getRankedProducts (
-    ): ApiResponse<List<ProductResponse.RankedProduct>> {
-        val mockRankedProducts = listOf(
-            RankedProductServiceDto(1, "oreo", 10000, 10),
-            RankedProductServiceDto(2, "chips", 5000, 20),
-            RankedProductServiceDto(3, "cola", 2000, 15)
-        )
-        val responseDto = mockRankedProducts.map { ProductResponse.RankedProduct.from(it) }
-        return ApiResponse.success(responseDto);
-    }
-
     // 선착순 쿠폰을 발급한다
     @PostMapping("/coupons/issue")
     fun issuedCoupon(
