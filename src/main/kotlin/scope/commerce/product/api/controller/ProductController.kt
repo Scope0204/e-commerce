@@ -24,47 +24,22 @@ class ProductController(
             productResponseMapper.toApiResponse(queryProductUseCase.getProductById(productId))
         );
     }
-/*
-    // 상품 목록을 조회
-    @GetMapping("/products")
-    fun getProducts(
-        @RequestParam(defaultValue = "1") @Min(1) page: Int,
-        @RequestParam(defaultValue = "10") @Min(1) size: Int
-    ): ApiResponse<List<ProductApiResponse.Product>> {
-        val result = queryProductUseCase.getProducts(page, size)
-        return ApiResponse.success(
-            content = productResponseMapper.toApiResponse(result),
-            pagination = productResponseMapper.toPagination(result)
-        )
-    }
 
-    @GetMapping("/products")
-    fun getProducts (
+    // 상품 목록을 조회
+    @Operation(summary = "상품 목록 조회 API")
+    @GetMapping
+    fun getProducts(
         @RequestParam(defaultValue = "1") page: Int,
         @RequestParam(defaultValue = "10") size: Int
     ): ApiResponse<List<ProductApiResponse.Product>> {
-        // TODO : productService.searchList(productId, page, size);
-        /*val mockProducts = listOf(
-            ProductServiceDto(1, "oreo", 10000, 10),
-            ProductServiceDto(2, "chips", 5000, 20),
-            ProductServiceDto(3, "cola", 2000, 15)
-        )
-        val responseDto = mockProducts.map { ProductApiResponse.Product.from(it)};
-        // 페이징 정보 생성
-        val pagination = ApiResponse.Pagination(
-            page = page,
-            size = size,
-            totalElements = 20, // 예시. 실제로는 서비스에서 토탈 갯수를 제공.
-            totalPages = ceil((20 / size).toDouble())
-        )
-        return ApiResponse.success(responseDto,pagination);*/
+        val response = queryProductUseCase.getProducts(page, size)
         return ApiResponse.success(
-            productResponseMapper.toApiResponse(queryProductUseCase.getProducts())
-        );
+            content = productResponseMapper.toApiResponse(response),
+            pagination = productResponseMapper.toPagination(response)
+        )
     }
-     */
 
-    // 상위 상품 목록 3개를 조회
+    // TODO : 상위 상품 목록 3개를 조회
     /*
     @GetMapping("/products/ranking")
     fun getRankedProducts (

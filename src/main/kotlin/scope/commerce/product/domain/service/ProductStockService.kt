@@ -11,4 +11,8 @@ class ProductStockService(
     fun getStockByProductId(productId: Long): ProductStock {
         return productStockRepository.findByProductId(productId)
     }
+
+    fun getStocksByProductIds(productIds: List<Long>): List<ProductStock> {
+        return productStockRepository.findByProductIds(productIds)
+    }
 }

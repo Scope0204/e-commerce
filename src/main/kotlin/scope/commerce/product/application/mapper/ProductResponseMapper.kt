@@ -25,7 +25,7 @@ class ProductResponseMapper {
         return ApiResponse.Pagination(
             page = response.page,
             size = response.size,
-            totalElements = response.totalElements.toInt(),
+            totalElements = response.totalElements,
             totalPages = response.totalPages.toDouble()
         )
     }

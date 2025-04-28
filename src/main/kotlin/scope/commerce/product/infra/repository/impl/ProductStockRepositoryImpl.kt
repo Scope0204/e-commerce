@@ -18,4 +18,9 @@ class ProductStockRepositoryImpl(
 
         return productStockMapper.toProductStock(productStockEntity)
     }
+
+    override fun findByProductIds(productIds: List<Long>): List<ProductStock> {
+        return productStockJpaRepository.findByProductEntityIdIn(productIds)
+            .map { productStockMapper.toProductStock(it) }
+    }
 }

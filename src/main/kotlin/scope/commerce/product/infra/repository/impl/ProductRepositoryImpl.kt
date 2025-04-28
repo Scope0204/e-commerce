@@ -1,5 +1,7 @@
 package scope.commerce.product.infra.repository.impl
 
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Repository
 import scope.commerce.product.domain.model.Product
 import scope.commerce.product.domain.repository.ProductRepository
@@ -18,5 +20,10 @@ class ProductRepositoryImpl(
 
         return productMapper.toProduct(productEntity)
 
+    }
+
+    override fun findAll(pageable: Pageable): Page<Product> {
+        return productJpaRepository.findAll(pageable)
+            .map { productMapper.toProduct(it) }
     }
 }
