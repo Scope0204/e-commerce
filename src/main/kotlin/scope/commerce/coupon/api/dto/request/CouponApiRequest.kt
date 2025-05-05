@@ -1,6 +1,6 @@
 package scope.commerce.coupon.api.dto.request
 
-class CouponRequest{
+class CouponApiRequest{
     data class Issue(
         var userId: Long,
         var couponId: Long,

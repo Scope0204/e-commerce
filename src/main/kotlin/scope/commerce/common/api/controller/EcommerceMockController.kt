@@ -4,16 +4,12 @@ import org.springframework.web.bind.annotation.*
 import scope.commerce.bucket.api.dto.request.BucketRequest
 import scope.commerce.bucket.api.dto.response.BucketResponse
 import scope.commerce.common.api.response.ApiResponse
-import scope.commerce.coupon.application.dto.CouponServiceDto
-import scope.commerce.coupon.api.dto.request.CouponRequest
-import scope.commerce.coupon.api.dto.response.CouponResponse
+import scope.commerce.coupon.application.dto.response.IssueCouponResponse
+import scope.commerce.coupon.api.dto.response.CouponApiResponse
 import scope.commerce.order.api.dto.request.OrderRequest
 import scope.commerce.order.api.dto.response.OrderResponse
 import scope.commerce.payment.api.dto.request.PaymentRequest
 import scope.commerce.payment.api.dto.response.PaymentResponse
-import scope.commerce.product.application.dto.response.ProductQueryResponse
-import scope.commerce.product.application.dto.response.RankedProductQueryResponse
-import scope.commerce.product.api.dto.response.ProductApiResponse
 import scope.commerce.bucket.application.dto.BucketServiceDto
 import scope.commerce.order.application.dto.OrderServiceDto
 import scope.commerce.payment.application.dto.PaymentServiceDto
@@ -29,49 +25,6 @@ import kotlin.math.ceil
 @RestController
 @RequestMapping("/api/v1/mock")
 class EcommerceMockController {
-    // 선착순 쿠폰을 발급한다
-    @PostMapping("/coupons/issue")
-    fun issuedCoupon(
-        @RequestBody couponRequest : CouponRequest.Issue
-    ): ApiResponse<CouponResponse.Coupon> {
-        // TODO : couponService.issue(couponId);
-        val responseDto = CouponResponse.Coupon
-            .from(
-                CouponServiceDto(couponRequest.couponId,
-                "10% 할인 쿠폰",
-                "RATE",
-                10,
-                5000,
-                100,
-                99,
-                LocalDate.now().plusWeeks(1),
-                LocalDate.now())
-            );
-        return ApiResponse.success(responseDto);
-    }
-    // 발급받은 쿠폰 목록을 조회한다
-    @GetMapping("/coupons/{userId}")
-    fun getIssuedCoupons(
-        @PathVariable userId : Long,
-        @RequestParam(defaultValue = "1") page: Int,
-        @RequestParam(defaultValue = "10") size: Int
-    ): ApiResponse<List<CouponResponse.Coupon>> {
-        // TODO : couponService.getIssuedCoupons(userId);
-        val mockCoupons = listOf(
-            CouponServiceDto(1, "10% 할인 쿠폰", "PERCENTAGE",10,5000,100,99,LocalDate.now().plusWeeks(1),
-                LocalDate.now()),
-            CouponServiceDto(2, "1000원 할인 쿠폰", "FIXED",1000,1000,100,99,LocalDate.now().plusWeeks(1),
-                LocalDate.now())
-        );
-        val responseDto = mockCoupons.map { CouponResponse.Coupon.from(it) };
-        val pagination = ApiResponse.Pagination(
-            page = page,
-            size = size,
-            totalElements = 20, // 예시. 실제로는 서비스에서 토탈 갯수를 제공.
-            totalPages = ceil((20 / size).toDouble())
-        )
-        return ApiResponse.success(responseDto,pagination);
-    }
 
     // 주문을 요청한다
     @PostMapping("/orders")
