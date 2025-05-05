@@ -5,7 +5,6 @@ erDiagram
     User ||--o| Bucket : owns
     Bucket ||--o{ Bucket_Product : contains
     Coupon ||--o{ User_Coupon : has
-    Coupon ||--o{ Coupon_Stock : tracks
     Product ||--o{ Bucket_Product : included_in
     Product ||--o{ Order_Product : has
     Product ||--|| Product_Stock : tracks
@@ -35,16 +34,13 @@ erDiagram
         int id PK
         string name
         String discount_type
-        int discount_value
+        int remainingQuantity
+        int discount_amount
+        int discount_rate
+        int discount_amount_per_unit
         int max_discount_amount
         int max_quantity
         date expiry_at
-    }
-    Coupon_Stock {
-        int id PK
-        int coupon_id FK
-        int remaining_quantity
-        date updated_at
     }
     Order {
         int id PK
@@ -52,6 +48,9 @@ erDiagram
         date order_at
         string status
         boolean from_bucket
+        int totalAmount
+        int discountAmount
+        int finalAmount
     }
     Order_Product {
         int id PK
