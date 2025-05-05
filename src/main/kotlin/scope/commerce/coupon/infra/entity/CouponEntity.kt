@@ -1,18 +1,47 @@
 package scope.commerce.coupon.infra.entity
 
 import jakarta.persistence.*
+import lombok.AllArgsConstructor
+import scope.commerce.common.infra.entity.BaseEntity
 import java.time.LocalDate
 
 @Entity
 @Table(name = "coupon")
-class CouponEntity(
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "discount_type")
+@AllArgsConstructor
+abstract class CouponEntity(
+    name: String,
+    remainingQuantity: Long,
+    maxDiscountAmount: Long,
+    maxQuantity: Long,
+    expiryAt: LocalDate
+) : BaseEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
-    var name: String,
-    var discountType: String,
-    var discountValue: Long,
-    var maxDiscountAmount: Long,
-    var maxQuantity: Long,
-    var expiryAt: LocalDate
-)
+    val id: Long? = null // val 로 설정 시 CouponEntity.id가 항상 null 로 유지되어 JPA 에서 항상 새로운 엔티티로 간주 됨
+
+    @Column(nullable = false)
+    var name: String = name
+        protected set
+
+    @Column(nullable = false)
+    var remainingQuantity: Long = remainingQuantity // 남은 쿠폰 수량
+        protected set
+
+    @Column(nullable = false)
+    var maxDiscountAmount: Long = maxDiscountAmount // 최대 할인 금액
+        protected set
+
+    @Column(nullable = false)
+    var maxQuantity: Long = maxQuantity // 최대 발급 수량
+        protected set
+
+    @Column(nullable = false)
+    var expiryAt: LocalDate = expiryAt // 만료 일자
+        protected set
+    /**
+     * 할인 금액 계산 로직 (서브 클래스에서 구현)
+     */
+    abstract fun calculateDiscount(orderAmount: Long, quantity: Long = 1): Long
+}
