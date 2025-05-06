@@ -11,15 +11,15 @@ import java.time.LocalDate
 @DiscriminatorColumn(name = "discount_type")
 @AllArgsConstructor
 abstract class CouponEntity(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long?, // ← 생성자에서 주입
     name: String,
     remainingQuantity: Long,
     maxDiscountAmount: Long,
     maxQuantity: Long,
     expiryAt: LocalDate
 ) : BaseEntity() {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null // val 로 설정 시 CouponEntity.id가 항상 null 로 유지되어 JPA 에서 항상 새로운 엔티티로 간주 됨
 
     @Column(nullable = false)
     var name: String = name

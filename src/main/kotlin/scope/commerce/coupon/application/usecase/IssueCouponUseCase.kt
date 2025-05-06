@@ -5,7 +5,6 @@ import scope.commerce.coupon.application.dto.command.IssueCouponCommand
 import scope.commerce.coupon.application.dto.response.IssueCouponResponse
 import scope.commerce.coupon.domain.service.CouponService
 import scope.commerce.user.domain.service.UserCouponService
-import java.time.LocalDate
 
 @Service
 class IssueCouponUseCase(

@@ -7,19 +7,14 @@ import java.time.LocalDate
 @Entity
 @DiscriminatorValue("QUANTITY_AMOUNT")
 class QuantityAmountDiscountCouponEntity(
+    id: Long?,
     name: String,
     remainingQuantity: Long,
     maxDiscountAmount: Long,
     maxQuantity: Long,
     expiryAt: LocalDate,
     val discountAmountPerUnit: Long, // 개당 할인 금액
-) : CouponEntity(
-    name = name,
-    remainingQuantity = remainingQuantity,
-    maxDiscountAmount = maxDiscountAmount,
-    maxQuantity = maxQuantity,
-    expiryAt = expiryAt
-) {
+) : CouponEntity(id, name, remainingQuantity, maxDiscountAmount, maxQuantity, expiryAt) {
     /**
      * 수량 별 할인
      * - 예 : 1개당 1000원 할인, 최대 5000원까지
