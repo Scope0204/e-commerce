@@ -1,7 +1,6 @@
 package scope.commerce.coupon.infra.entity
 
 import jakarta.persistence.*
-import lombok.AllArgsConstructor
 import scope.commerce.common.infra.entity.BaseEntity
 import java.time.LocalDate
 
@@ -9,11 +8,10 @@ import java.time.LocalDate
 @Table(name = "coupon")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "discount_type")
-@AllArgsConstructor
 abstract class CouponEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long?, // ← 생성자에서 주입
+    val id: Long?,
     name: String,
     remainingQuantity: Long,
     maxDiscountAmount: Long,
