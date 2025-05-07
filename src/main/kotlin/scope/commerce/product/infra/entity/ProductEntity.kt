@@ -12,7 +12,7 @@ class ProductEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0
+    val id: Long ?= null
 
     @Column(nullable = false)
     var name: String = name
@@ -20,6 +20,10 @@ class ProductEntity(
 
     @Column(nullable = false)
     var price: Long = price
+        protected set
+
+    @OneToOne(mappedBy = "productEntity", cascade = [CascadeType.ALL], fetch = FetchType.LAZY, optional = false)
+    var stock: ProductStockEntity ?= null
         protected set
 }
 

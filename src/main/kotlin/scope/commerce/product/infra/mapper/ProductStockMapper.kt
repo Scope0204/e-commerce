@@ -1,4 +1,4 @@
-package scope.commerce.product.infra.mapper
+ package scope.commerce.product.infra.mapper
 
 import org.mapstruct.InheritInverseConfiguration
 import org.mapstruct.Mapper
@@ -14,4 +14,5 @@ interface ProductStockMapper {
     @InheritInverseConfiguration
     @Mapping(target = "productEntity", ignore = true) // 주입 필요
     fun toProductStockEntity(domain: ProductStock): ProductStockEntity
+
 }
