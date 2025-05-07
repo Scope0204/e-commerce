@@ -1,7 +1,6 @@
 package scope.commerce.coupon.domain.service;
 
 import jakarta.transaction.Transactional
-import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
 import scope.commerce.coupon.domain.model.Coupon
 import scope.commerce.coupon.domain.repository.CouponRepository
@@ -40,8 +39,12 @@ class CouponService(
         return decreasedCoupon
     }
 
-    fun getCouponsForIssuance(page: Int, size: Int, couponIds: List<Long>): Page<Coupon> {
-        TODO("유저 쿠폰 목록 조회 시 여기에 구현. 페이징 적용 필요.")
+    /**
+     * ID 리스트로 쿠폰 도메인 정보 조회
+     */
+    fun getCouponsInfo(couponIds: List<Long>): Map<Long, Coupon> {
+        return couponRepository.findByIdIn(couponIds)
+            .associateBy { it.id }
     }
 
     fun issueCoupon(coupon: Coupon) {

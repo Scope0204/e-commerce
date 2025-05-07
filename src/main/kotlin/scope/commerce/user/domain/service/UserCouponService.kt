@@ -1,6 +1,9 @@
 package scope.commerce.user.domain.service
 
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
+import scope.commerce.product.domain.model.Product
 import scope.commerce.user.domain.model.UserCoupon
 import scope.commerce.user.domain.repository.UserCouponRepository
 import java.time.LocalDate
@@ -27,5 +30,13 @@ class UserCouponService(
         )
         userCouponRepository.save(userCoupon)
         return userCoupon
+    }
+
+    /**
+     * 유저가 보유한 쿠폰 목록을 페이징으로 조회
+     */
+    fun getUserCoupons(userId: Long, page: Int, size: Int): Page<UserCoupon> {
+        val pageable = PageRequest.of(page - 1, size)
+        return userCouponRepository.findByUserEntityId(userId, pageable)
     }
 }

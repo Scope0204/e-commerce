@@ -1,5 +1,7 @@
 package scope.commerce.user.infra.repository.impl
 
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Repository
 import scope.commerce.coupon.infra.repository.jpa.CouponJpaRepository
 import scope.commerce.user.domain.model.UserCoupon
@@ -25,5 +27,10 @@ class UserCouponRepositoryImpl(
         val couponEntity = couponJpaRepository.getReferenceById(userCoupon.couponId)
         val entity = userCouponMapper.toUserCouponEntity(userCoupon, userEntity, couponEntity)
         userCouponJpaRepository.save(entity)
+    }
+
+    override fun findByUserEntityId(userId: Long, pageable: Pageable): Page<UserCoupon> {
+        return userCouponJpaRepository.findByUserEntityId(userId, pageable)
+            .map { userCouponMapper.toUserCoupon(it) }
     }
 }
