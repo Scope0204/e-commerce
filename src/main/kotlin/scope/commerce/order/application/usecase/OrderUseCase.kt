@@ -1,6 +1,7 @@
 package scope.commerce.order.application.usecase
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import scope.commerce.coupon.domain.service.CouponService
 import scope.commerce.order.application.dto.command.OrderCommand
 import scope.commerce.order.application.dto.response.OrderResponse
@@ -23,6 +24,7 @@ class OrderUseCase(
      * 4. 쿠폰 사용 여부 확인 후 상태 변경(쿠폰 재고 차감)
      * 5. 주문 목록 생성 후 저장
      */
+    @Transactional
     fun execute(command: OrderCommand): OrderResponse {
         // 사용자 존재 여부 확인
         val user = userService.findById(command.userId)

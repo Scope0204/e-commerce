@@ -1,6 +1,7 @@
 package scope.commerce.user.application.usecase
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import scope.commerce.user.application.dto.response.UserCouponListQueryResponse
 import scope.commerce.coupon.domain.service.CouponService
 import scope.commerce.user.application.dto.response.UserCouponQueryResponse
@@ -11,6 +12,7 @@ class QueryUserCouponUseCase(
     private val couponService: CouponService,
     private val userCouponService: UserCouponService
 ) {
+    @Transactional(readOnly = true)
     fun getUserCoupons(userId: Long, page: Int, size: Int): UserCouponListQueryResponse {
 
         // 1.유저 쿠폰 목록 조회 ( 쿠폰 목록 반환 )

@@ -1,6 +1,7 @@
 package scope.commerce.coupon.application.usecase
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import scope.commerce.coupon.application.dto.command.IssueCouponCommand
 import scope.commerce.coupon.application.dto.response.IssueCouponResponse
 import scope.commerce.coupon.domain.service.CouponService
@@ -11,6 +12,7 @@ class IssueCouponUseCase(
     private val couponService: CouponService,
     private val userCouponService: UserCouponService
 ) {
+    @Transactional
     fun issueCoupon(command: IssueCouponCommand): IssueCouponResponse {
         // 1. 유저가 이미 발급받았는지 검증
         if (userCouponService.hasIssued(command.userId, command.couponId)) {
