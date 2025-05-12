@@ -10,9 +10,8 @@ erDiagram
     Product ||--|| Product_Stock : tracks
     Order ||--o{ Order_Product : contains
     Order ||--|o Payment : processes
+    Order ||--o| User_Coupon : applies
     Order_Product }|--o| Bucket_Product : from_bucket
-    Order ||--o| Order_Coupon : applies
-    User_Coupon ||--o| Order_Coupon : used_in
 
     User {
         int id PK
@@ -45,6 +44,7 @@ erDiagram
     Order {
         int id PK
         int user_id FK
+        int user_coupon_id FK
         date order_at
         string status
         boolean from_bucket
@@ -62,13 +62,7 @@ erDiagram
         date created_at
         date updated_at
     }
-    Order_Coupon {
-        int id PK
-        int order_id FK
-        int user_coupon_id FK
-        int discount_amount
-        date applied_at
-    }
+
     Product {
         int id PK
         string name
