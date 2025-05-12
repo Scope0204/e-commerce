@@ -1,6 +1,6 @@
 package scope.commerce.coupon.domain.service;
 
-import jakarta.transaction.Transactional
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.stereotype.Service
 import scope.commerce.coupon.domain.model.Coupon
 import scope.commerce.coupon.domain.repository.CouponRepository
@@ -12,19 +12,19 @@ class CouponService(
     /**
      * 쿠폰 유효성 검증 및 재고 차감
      */
-    @Transactional
     fun validateAndDecreaseCoupon(couponId: Long): Coupon {
-        val coupon = getCouponForIssuance(couponId) // 유효성 체크
+        val coupon = validateCoupon(couponId) // 유효성 체크
         return decreaseCoupon(coupon) // 쿠폰 재고 차감
     }
 
     /**
-     * 쿠폰 발급을 위한 쿠폰 조회 및 검증
+     * 쿠폰 조회 및 검증
      * - 발급하려는 쿠폰이 유효한지 확인
      * - 쿠폰 재고 확인
-     * 확인 후 Coupon 객체를 리턴
+     * - 확인 후 Coupon 객체를 리턴
      */
-    fun getCouponForIssuance(couponId: Long): Coupon {
+    @Transactional(readOnly = true)
+    fun validateCoupon(couponId: Long): Coupon {
         val coupon = couponRepository.findById(couponId)
         coupon.validateForIssue()
         return coupon
@@ -33,6 +33,7 @@ class CouponService(
     /**
      * 쿠폰 재고 차감
      */
+    @Transactional
     fun decreaseCoupon(coupon: Coupon): Coupon {
         val decreasedCoupon = coupon.decrease(1)
         couponRepository.save(decreasedCoupon)
@@ -42,6 +43,7 @@ class CouponService(
     /**
      * ID 리스트로 쿠폰 도메인 정보 조회
      */
+    @Transactional(readOnly = true)
     fun getCouponsInfo(couponIds: List<Long>): Map<Long, Coupon> {
         return couponRepository.findByIdIn(couponIds)
             .associateBy { it.id }

@@ -1,6 +1,6 @@
 package scope.commerce.order.api.dto.request
 
-class OrderRequest {
+class OrderApiRequest {
     data class Create(
         val userId: Long,
         val fromBucket: Boolean,
@@ -9,7 +9,7 @@ class OrderRequest {
     ) {
         data class Product(
             val productId: Long,
-            val quantity: Int
+            val quantity: Long
         )
     }
 }

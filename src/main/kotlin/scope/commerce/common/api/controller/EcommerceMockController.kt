@@ -4,14 +4,11 @@ import org.springframework.web.bind.annotation.*
 import scope.commerce.bucket.api.dto.request.BucketRequest
 import scope.commerce.bucket.api.dto.response.BucketResponse
 import scope.commerce.common.api.response.ApiResponse
-import scope.commerce.coupon.application.dto.response.IssueCouponResponse
-import scope.commerce.coupon.api.dto.response.CouponApiResponse
-import scope.commerce.order.api.dto.request.OrderRequest
-import scope.commerce.order.api.dto.response.OrderResponse
+import scope.commerce.order.api.dto.request.OrderApiRequest
 import scope.commerce.payment.api.dto.request.PaymentRequest
 import scope.commerce.payment.api.dto.response.PaymentResponse
 import scope.commerce.bucket.application.dto.BucketServiceDto
-import scope.commerce.order.application.dto.OrderServiceDto
+import scope.commerce.order.application.dto.response.OrderResponse
 import scope.commerce.payment.application.dto.PaymentServiceDto
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -25,24 +22,6 @@ import kotlin.math.ceil
 @RestController
 @RequestMapping("/api/v1/mock")
 class EcommerceMockController {
-
-    // 주문을 요청한다
-    @PostMapping("/orders")
-    fun createOrder(
-        @RequestBody request: OrderRequest.Create
-    ): ApiResponse<OrderResponse.Summary> {
-        // TODO: orderService.createOrder(request.userId, request.products, request.couponId, request.fromBucket)
-        val responseDto = OrderResponse.Summary.from(
-            OrderServiceDto(
-                orderId = 1234,
-                totalAmount = 30000,
-                discountAmount = 3000,
-                finalAmount = 27000,
-                orderedAt = LocalDateTime.now()
-            )
-        )
-        return ApiResponse.success(responseDto)
-    }
 
     // 결제를 진행한다
     @PostMapping("/payments")
