@@ -1,6 +1,7 @@
 package scope.commerce.product.application.usecase
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import scope.commerce.product.application.dto.response.ProductListQueryResponse
 import scope.commerce.product.application.dto.response.ProductQueryResponse
 import scope.commerce.product.domain.service.ProductService
@@ -10,6 +11,7 @@ class QueryProductUseCase (
     private val productService: ProductService,
 ) {
     // 상품 정보 조회(단건)
+    @Transactional(readOnly = true)
     fun getProductById(productId: Long): ProductQueryResponse {
         val product = productService.getProductById(productId)
         return ProductQueryResponse(
@@ -21,6 +23,7 @@ class QueryProductUseCase (
     }
 
     // 상품 목록 조회
+    @Transactional(readOnly = true)
     fun getProducts(page: Int, size: Int): ProductListQueryResponse {
         val productPage = productService.getProducts(page, size)
         val products = productPage.content.map { product ->
