@@ -10,10 +10,19 @@ import scope.commerce.common.infra.entity.BaseEntity
 @Entity
 @Table(name = "point", uniqueConstraints = [UniqueConstraint(columnNames = ["user_id"])])
 class PointEntity(
+    id: Long?,
+    userId: Long,
+    amount: Long
+) : BaseEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    var id: Long? = id
+        protected set
+
     @Column(name = "user_id")
-    var userId: Long,
-    var amount: Long
-) : BaseEntity()
+    var userId: Long = userId
+        protected set
+
+    var amount: Long = amount
+        protected set
+}

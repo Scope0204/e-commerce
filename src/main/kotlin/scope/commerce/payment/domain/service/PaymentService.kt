@@ -13,13 +13,7 @@ class PaymentService(
     private val paymentRepository: PaymentRepository
 ) {
     fun createPayment(order: Order, user: User): Payment {
-        val payment = Payment(
-            userId = user.id,
-            orderId = order.id ?: throw IllegalStateException("주문 ID가 없습니다."),
-            paymentAmount = order.finalAmount,
-            paymentStatus = PaymentStatus.PENDING,
-            paidAt = LocalDateTime.now()
-        )
+        val payment = Payment.create(order, user)
         return paymentRepository.save(payment)
     }
 }

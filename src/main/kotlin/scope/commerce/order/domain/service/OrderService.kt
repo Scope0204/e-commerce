@@ -41,7 +41,7 @@ class OrderService(
 
         // 5. 주문 도메인 객체 생성
         return Order(
-            userId = user.id,
+            userId = user.id!!, // TODO : Payment 모델과 마찬가지로 도메인 객체에 팩토리 메서드로 생성 책임 위임하도록 변경
             status = OrderStatus.PENDING,
             fromBucket = fromBucket,
             userCouponId = coupon?.id,

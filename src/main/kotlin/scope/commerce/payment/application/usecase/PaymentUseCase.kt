@@ -35,7 +35,7 @@ class PaymentUseCase(
         order.completeOrder()
         orderService.saveOrder(order)
 
-        pointService.use(user.id, order.finalAmount)
+        pointService.use(command.userId, order.finalAmount)
 
         productStockService.decrease(order.products)
 
