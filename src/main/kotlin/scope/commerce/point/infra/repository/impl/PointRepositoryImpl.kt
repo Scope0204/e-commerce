@@ -17,8 +17,15 @@ class PointRepositoryImpl(
     }
 
     override fun save(point: Point): Point {
-        val saved = pointJpaRepository.save(pointMapper.toPointEntity(point))
-        return pointMapper.toPoint(saved)
+        return pointMapper.toPoint(
+            pointJpaRepository.save(pointMapper.toPointEntity(point))
+        )
+    }
+
+    override fun saveAll(point: List<Point>): List<Point> {
+        return pointMapper.toPoints(
+            pointJpaRepository.saveAll(pointMapper.toPointEntities(point))
+        )
     }
 
     override fun deleteAll() {
