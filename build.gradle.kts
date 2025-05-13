@@ -45,10 +45,17 @@ dependencies {
 	runtimeOnly("com.mysql:mysql-connector-j")
 	annotationProcessor("org.projectlombok:lombok")
 
-	// test
+	// test 관련
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	// Spring Boot + TestContainers 통합 (3.1 이상)
+	testImplementation("org.springframework.boot:spring-boot-testcontainers")
+	// TestContainers core (선택적으로 사용)
+	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("org.testcontainers:mysql")
+	// Fixture Monkey
+	testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter:1.1.11")
 }
 
 kotlin {
