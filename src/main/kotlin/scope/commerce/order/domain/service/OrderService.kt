@@ -14,7 +14,6 @@ import scope.commerce.user.domain.model.User
 class OrderService(
     private val orderRepository: OrderRepository
 ){
-    @Transactional
     fun createOrder(
         user: User,
         fromBucket: Boolean,
@@ -54,8 +53,12 @@ class OrderService(
         )
     }
 
-    @Transactional
     fun saveOrder(order: Order): Order {
         return orderRepository.save(order)
+    }
+
+    // 주문 조회
+    fun findByOrderId(orderId: Long): Order {
+        return orderRepository.findById(orderId)
     }
 }

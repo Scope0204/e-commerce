@@ -43,4 +43,10 @@ class OrderRepositoryImpl(
         val savedEntity = orderJpaRepository.save(orderEntity)
         return orderMapper.toOrder(savedEntity)
     }
+
+    override fun findById(orderId: Long): Order {
+        return orderMapper.toOrder(orderJpaRepository.findById(orderId)
+            .orElseThrow { IllegalArgumentException("주문 정보를 찾을 수 없습니다. orderId=$orderId") }
+        )
+    }
 }

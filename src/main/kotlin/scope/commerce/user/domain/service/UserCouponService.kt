@@ -3,7 +3,6 @@ package scope.commerce.user.domain.service
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
-import scope.commerce.product.domain.model.Product
 import scope.commerce.user.domain.model.UserCoupon
 import scope.commerce.user.domain.repository.UserCouponRepository
 import java.time.LocalDate
