@@ -3,17 +3,16 @@ erDiagram
     User ||--o{ User_Coupon : has
     User ||--o{ Order : makes
     User ||--o| Bucket : owns
+    User ||--o{ Payment : has
     Bucket ||--o{ Bucket_Product : contains
     Coupon ||--o{ User_Coupon : has
-    Coupon ||--o{ Coupon_Stock : tracks
     Product ||--o{ Bucket_Product : included_in
     Product ||--o{ Order_Product : has
     Product ||--|| Product_Stock : tracks
     Order ||--o{ Order_Product : contains
     Order ||--|o Payment : processes
+    Order ||--o| User_Coupon : applies
     Order_Product }|--o| Bucket_Product : from_bucket
-    Order ||--o| Order_Coupon : applies
-    User_Coupon ||--o| Order_Coupon : used_in
 
     User {
         int id PK
@@ -35,23 +34,24 @@ erDiagram
         int id PK
         string name
         String discount_type
-        int discount_value
+        int remainingQuantity
+        int discount_amount
+        int discount_rate
+        int discount_amount_per_unit
         int max_discount_amount
         int max_quantity
         date expiry_at
     }
-    Coupon_Stock {
-        int id PK
-        int coupon_id FK
-        int remaining_quantity
-        date updated_at
-    }
     Order {
         int id PK
         int user_id FK
+        int user_coupon_id FK
         date order_at
         string status
         boolean from_bucket
+        int totalAmount
+        int discountAmount
+        int finalAmount
     }
     Order_Product {
         int id PK
@@ -62,13 +62,6 @@ erDiagram
         int unit_price
         date created_at
         date updated_at
-    }
-    Order_Coupon {
-        int id PK
-        int order_id FK
-        int user_coupon_id FK
-        int discount_amount
-        date applied_at
     }
     Product {
         int id PK
@@ -84,6 +77,7 @@ erDiagram
     }
     Payment {
         int id PK
+        int user_id FK
         int order_id FK
         int payment_amount
         string payment_status
