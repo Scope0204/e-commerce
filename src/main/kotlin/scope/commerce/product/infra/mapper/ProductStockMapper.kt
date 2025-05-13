@@ -13,5 +13,7 @@ interface ProductStockMapper {
     fun toProductStock(entity: ProductStockEntity): ProductStock
 
     @Mapping(target = "productEntity", source = "productEntity")
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     fun toProductStockEntity(domain: ProductStock, productEntity: ProductEntity): ProductStockEntity
 }
