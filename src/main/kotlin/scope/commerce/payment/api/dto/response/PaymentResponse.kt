@@ -1,6 +1,6 @@
 package scope.commerce.payment.api.dto.response
 
-import scope.commerce.payment.application.dto.PaymentServiceDto
+import scope.commerce.payment.application.dto.response.PaymentResponse
 import java.time.LocalDateTime
 
 class PaymentResponse {
@@ -11,7 +11,7 @@ class PaymentResponse {
         val paidAt: LocalDateTime
     ) {
         companion object {
-            fun from(dto: PaymentServiceDto): Detail =
+            fun from(dto: PaymentResponse): Detail =
                 Detail(
                     paymentId = dto.paymentId,
                     paymentAmount = dto.paymentAmount,

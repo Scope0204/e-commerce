@@ -3,6 +3,7 @@ erDiagram
     User ||--o{ User_Coupon : has
     User ||--o{ Order : makes
     User ||--o| Bucket : owns
+    User ||--o{ Payment : has
     Bucket ||--o{ Bucket_Product : contains
     Coupon ||--o{ User_Coupon : has
     Product ||--o{ Bucket_Product : included_in
@@ -62,7 +63,6 @@ erDiagram
         date created_at
         date updated_at
     }
-
     Product {
         int id PK
         string name
@@ -77,6 +77,7 @@ erDiagram
     }
     Payment {
         int id PK
+        int user_id FK
         int order_id FK
         int payment_amount
         string payment_status

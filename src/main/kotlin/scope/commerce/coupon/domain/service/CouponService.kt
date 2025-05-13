@@ -23,7 +23,6 @@ class CouponService(
      * - 쿠폰 재고 확인
      * - 확인 후 Coupon 객체를 리턴
      */
-    @Transactional(readOnly = true)
     fun validateCoupon(couponId: Long): Coupon {
         val coupon = couponRepository.findById(couponId)
         coupon.validateForIssue()
@@ -33,7 +32,6 @@ class CouponService(
     /**
      * 쿠폰 재고 차감
      */
-    @Transactional
     fun decreaseCoupon(coupon: Coupon): Coupon {
         val decreasedCoupon = coupon.decrease(1)
         couponRepository.save(decreasedCoupon)
@@ -43,7 +41,6 @@ class CouponService(
     /**
      * ID 리스트로 쿠폰 도메인 정보 조회
      */
-    @Transactional(readOnly = true)
     fun getCouponsInfo(couponIds: List<Long>): Map<Long, Coupon> {
         return couponRepository.findByIdIn(couponIds)
             .associateBy { it.id }

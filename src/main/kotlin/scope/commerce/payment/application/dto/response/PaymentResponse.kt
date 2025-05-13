@@ -1,8 +1,8 @@
-package scope.commerce.payment.application.dto;
+package scope.commerce.payment.application.dto.response;
 
 import java.time.LocalDateTime
 
-data class PaymentServiceDto(
+data class PaymentResponse(
     val paymentId: Long,
     val paymentAmount: Int,
     val paymentStatus: String,
