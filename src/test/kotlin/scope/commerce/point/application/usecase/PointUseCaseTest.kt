@@ -6,14 +6,13 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.transaction.annotation.Transactional
 import org.testcontainers.junit.jupiter.Testcontainers
 import scope.commerce.point.application.dto.command.ChargePointCommand
-import scope.commerce.point.fixture.PointFixture
 import scope.commerce.user.fixture.UserFixture
 import kotlin.test.Test
 
 
 @Testcontainers
 @SpringBootTest
-class ChargePointUseCaseTest {
+class PointUseCaseTest {
     @Autowired
     lateinit var chargePointUseCase: ChargePointUseCase
 
