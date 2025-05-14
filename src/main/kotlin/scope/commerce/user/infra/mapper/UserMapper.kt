@@ -11,9 +11,4 @@ interface UserMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
     fun toUserEntity(domain: User): UserEntity
-
-    fun toUsers(entities: List<UserEntity>): List<User>
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    fun toUserEntities(users: List<User>): List<UserEntity>
 }

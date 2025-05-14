@@ -24,11 +24,9 @@ class UserRepositoryImpl(
         )
     }
 
-    override fun saveAll(users: List<User>): List<User> {
-        return userMapper.toUsers(
-            userJpaRepository.saveAll(userMapper.toUserEntities(users))
-        )
-    }
+    override fun saveAll(users: List<User>): List<User> =
+        userJpaRepository.saveAll(users.map { userMapper.toUserEntity(it) })
+            .map { userMapper.toUser(it) }
 
     override fun deleteAll() {
         userJpaRepository.deleteAll()
