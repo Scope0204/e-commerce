@@ -26,4 +26,14 @@ class ProductRepositoryImpl(
         return productJpaRepository.findAll(pageable)
             .map { productMapper.toProduct(it) }
     }
+
+    override fun saveAll(products: List<Product>): List<Product> {
+        return productMapper.toProducts(
+            productJpaRepository.saveAll(productMapper.toProductEntities(products))
+        )
+    }
+
+    override fun deleteAll() {
+        productJpaRepository.deleteAll()
+    }
 }

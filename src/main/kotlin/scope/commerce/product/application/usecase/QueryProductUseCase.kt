@@ -15,7 +15,7 @@ class QueryProductUseCase (
     fun getProductById(productId: Long): ProductQueryResponse {
         val product = productService.getProductById(productId)
         return ProductQueryResponse(
-            productId = product.id,
+            productId = product.id!!, // TODO : 팩토리 메서드로 변경 후 검증 로직 추가 필요
             name = product.name,
             price = product.price,
             quantity = product.quantity
@@ -28,7 +28,7 @@ class QueryProductUseCase (
         val productPage = productService.getProducts(page, size)
         val products = productPage.content.map { product ->
             ProductQueryResponse(
-                productId = product.id,
+                productId = product.id!!,  // TODO : 팩토리 메서드로 변경 후 검증 로직 추가 필요
                 name = product.name,
                 price = product.price,
                 quantity = product.quantity

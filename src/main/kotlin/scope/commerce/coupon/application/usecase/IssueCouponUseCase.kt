@@ -26,7 +26,7 @@ class IssueCouponUseCase(
 
         // 발급받은 쿠폰 정보 반환
         return IssueCouponResponse(
-            couponId = coupon.id,
+            couponId = coupon.id!!, // 검증 이후 발급이 완료되므로 null 일 수 없다. 그러나 구조 개선 필요.
             name = coupon.name,
             discountType = coupon.discountType,
             discountValue = coupon.discountValue,

@@ -28,8 +28,9 @@ class PointServiceTest {
     @Test
     fun `사용자 포인트 조회 테스트`() {
         // Given
+        val id = 1L
         val userId = 1L
-        val existing = Point(userId = userId, amount = 1000)
+        val existing = Point(id = id, userId = userId, amount = 1000)
 
         `when`(pointRepository.findByUserId(userId)).thenReturn(existing)
 
@@ -43,9 +44,10 @@ class PointServiceTest {
     @Test
     fun `기존 포인트가 있는 사용자의 포인트 충전 테스트`() {
         // Given
+        val id = 1L
         val userId = 2L
-        val existing = Point(userId = userId, amount = 1000)
-        val expected = Point(userId = userId, amount = 3000)
+        val existing = Point(id = id, userId = userId, amount = 1000)
+        val expected = Point(id = id, userId = userId, amount = 3000)
 
         `when`(pointRepository.findByUserId(userId)).thenReturn(existing)
         `when`(pointRepository.save(expected)).thenReturn(expected)
@@ -61,9 +63,10 @@ class PointServiceTest {
     @Test
     fun `기존 포인트가 없을 경우 신규 생성 후 충전되는 테스트`() {
         // Given
+        val id = 1L
         val userId = 3L
-        val existing = Point(userId = userId, amount = 0)
-        val expected = Point(userId = userId, amount = 2000)
+        val existing = Point(id = id, userId = userId, amount = 0)
+        val expected = Point(id = id, userId = userId, amount = 2000)
 
         `when`(pointRepository.findByUserId(userId)).thenReturn(existing)
         `when`(pointRepository.save(expected)).thenReturn(expected)
@@ -104,8 +107,9 @@ class PointServiceTest {
     @Test
     fun `충전 금액이 1 미만일 경우 예외 발생`() {
         // Given
+        val id = 1L
         val userId = 1L
-        val point = Point(userId = userId, amount = 5000)
+        val point = Point(id = id, userId = userId, amount = 5000)
         val chargeAmount = 0L
         `when`(pointRepository.findByUserId(userId)).thenReturn(point)
 

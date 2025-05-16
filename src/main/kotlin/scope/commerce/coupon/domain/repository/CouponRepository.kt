@@ -6,4 +6,5 @@ interface CouponRepository {
     fun findById(couponId: Long): Coupon
     fun findByIdIn(ids: List<Long>): List<Coupon>
     fun save(coupon: Coupon)
+    fun saveAll(coupons: List<Coupon>): List<Coupon>
 }

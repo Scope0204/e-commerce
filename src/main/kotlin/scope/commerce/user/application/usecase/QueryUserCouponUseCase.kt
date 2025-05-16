@@ -27,7 +27,7 @@ class QueryUserCouponUseCase(
                 ?: throw IllegalStateException("쿠폰 정보가 존재하지 않습니다. id=${userCoupon.couponId}")
 
             UserCouponQueryResponse(
-                couponId = coupon.id,
+                couponId = coupon.id!!,
                 name = coupon.name,
                 discountType = coupon.discountType,
                 discountValue = coupon.discountValue,

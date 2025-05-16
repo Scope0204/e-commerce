@@ -24,7 +24,7 @@ class OrderService(
         val orderProducts = products.map {
             // 수량은 product 에 포함되어 있다고 가정하거나, 별도 파라미터로 받아야 함
             OrderProduct(
-                productId = it.id,
+                productId = it.id!!, // TODO : 팩토리 메서드로 변경 후 검증 로직 추가 필요
                 quantity = it.quantity,
                 unitPrice = it.price,
             )
@@ -41,7 +41,7 @@ class OrderService(
 
         // 5. 주문 도메인 객체 생성
         return Order(
-            userId = user.id,
+            userId = user.id!!, // TODO : Payment 모델과 마찬가지로 도메인 객체에 팩토리 메서드로 생성 책임 위임하도록 변경
             status = OrderStatus.PENDING,
             fromBucket = fromBucket,
             userCouponId = coupon?.id,

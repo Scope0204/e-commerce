@@ -19,6 +19,8 @@ interface OrderMapper {
     @Mapping(target = "userEntity", source = "userEntity")
     @Mapping(target = "userCouponEntity", ignore = true)
     @Mapping(target = "orderProducts", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     fun toOrderEntity(
         domain: Order,
         userEntity: UserEntity,
