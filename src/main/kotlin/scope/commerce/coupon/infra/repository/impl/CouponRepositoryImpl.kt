@@ -33,4 +33,8 @@ class CouponRepositoryImpl(
         val entity = couponMapper.toCouponEntity(coupon)
         couponJpaRepository.save(entity)
     }
+
+    override fun saveAll(coupons: List<Coupon>): List<Coupon> =
+        couponJpaRepository.saveAll(coupons.map { couponMapper.toCouponEntity(it) })
+            .map { couponMapper.toCoupon(it) }
 }

@@ -1,6 +1,5 @@
 package scope.commerce.coupon.domain.service;
 
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.stereotype.Service
 import scope.commerce.coupon.domain.model.Coupon
 import scope.commerce.coupon.domain.repository.CouponRepository
@@ -43,7 +42,7 @@ class CouponService(
      */
     fun getCouponsInfo(couponIds: List<Long>): Map<Long, Coupon> {
         return couponRepository.findByIdIn(couponIds)
-            .associateBy { it.id }
+            .associateBy { it.id!! }
     }
 
     fun issueCoupon(coupon: Coupon) {

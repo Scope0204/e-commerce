@@ -17,4 +17,18 @@ class UserRepositoryImpl(
             .orElseThrow { IllegalArgumentException("회원 정보를 찾을 수 없습니다. userId=$userId") }
         )
     }
+
+    override fun save(user: User): User {
+        return userMapper.toUser(
+            userJpaRepository.save(userMapper.toUserEntity(user))
+        )
+    }
+
+    override fun saveAll(users: List<User>): List<User> =
+        userJpaRepository.saveAll(users.map { userMapper.toUserEntity(it) })
+            .map { userMapper.toUser(it) }
+
+    override fun deleteAll() {
+        userJpaRepository.deleteAll()
+    }
 }

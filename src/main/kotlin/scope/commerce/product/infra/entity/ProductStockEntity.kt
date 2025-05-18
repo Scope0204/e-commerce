@@ -20,7 +20,7 @@ class ProductStockEntity(
     @OneToOne
     @JoinColumn(name = "product_id", nullable = false, unique = true)
     var productEntity: ProductEntity = productEntity
-        internal set
+        protected set
 
     @Column(nullable = false)
     var quantity: Long = quantity

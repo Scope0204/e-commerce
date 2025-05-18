@@ -15,6 +15,8 @@ interface UserCouponMapper {
 
     @Mapping(target = "userEntity", source = "userEntity")
     @Mapping(target = "couponEntity", source = "couponEntity")
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
     fun toUserCouponEntity(
         domain: UserCoupon,
         userEntity: UserEntity,

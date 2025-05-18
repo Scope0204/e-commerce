@@ -1,9 +1,10 @@
 package scope.commerce.coupon.domain.model
 
+import scope.commerce.common.type.coupon.CouponDiscountType
 import java.time.LocalDate
 
 abstract class Coupon(
-    open val id: Long,
+    open val id: Long?,
     open val name: String,
     open val remainingQuantity: Long,
     open val maxDiscountAmount: Long,
@@ -12,7 +13,7 @@ abstract class Coupon(
 ) {
     abstract fun calculateDiscount(orderAmount: Long, quantity: Long = 1): Long
     // 공통 반환 값을 위한 추상 프로퍼티
-    abstract val discountType: String
+    abstract val discountType: CouponDiscountType
     abstract val discountValue: Long
 
     /**
@@ -59,7 +60,7 @@ data class AmountDiscountCoupon(
     override fun calculateDiscount(orderAmount: Long, quantity: Long): Long {
         return minOf(discountAmount, maxDiscountAmount)
     }
-    override val discountType: String = "FIXED"
+    override val discountType: CouponDiscountType = CouponDiscountType.FIXED
     override val discountValue: Long = discountAmount
 }
 
@@ -75,6 +76,6 @@ data class PercentageDiscountCoupon(
     override fun calculateDiscount(orderAmount: Long, quantity: Long): Long {
         return minOf((orderAmount * discountRate) / 100, maxDiscountAmount)
     }
-    override val discountType: String = "PERCENTAGE"
+    override val discountType: CouponDiscountType = CouponDiscountType.PERCENTAGE
     override val discountValue: Long = discountRate
 }

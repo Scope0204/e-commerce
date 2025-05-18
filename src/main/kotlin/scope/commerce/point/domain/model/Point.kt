@@ -1,7 +1,7 @@
 package scope.commerce.point.domain.model
 
 data class Point(
-    val id: Long,
+    val id: Long?,
     val userId: Long,
     var amount: Long
 ) {
