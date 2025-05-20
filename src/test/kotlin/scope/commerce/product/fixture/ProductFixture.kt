@@ -1,6 +1,7 @@
 package scope.commerce.product.fixture
 
 import org.springframework.stereotype.Component
+import scope.commerce.common.type.product.ProductStatus
 import scope.commerce.product.domain.model.Product
 import scope.commerce.product.domain.model.ProductStock
 import scope.commerce.product.domain.repository.ProductRepository
@@ -22,7 +23,8 @@ class ProductFixture(
                 id = null,
                 name = "product-$i",
                 price = 1000L * i,
-                quantity = 10L * i
+                quantity = 10L * i,
+                status = ProductStatus.ON_SALE
             )
         }
 

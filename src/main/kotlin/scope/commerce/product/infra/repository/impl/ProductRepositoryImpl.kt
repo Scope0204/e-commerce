@@ -27,6 +27,10 @@ class ProductRepositoryImpl(
             .map { productMapper.toProduct(it) }
     }
 
+    override fun save(product: Product) {
+        productJpaRepository.save(productMapper.toProductEntity(product))
+    }
+
     override fun saveAll(products: List<Product>): List<Product> {
         return productMapper.toProducts(
             productJpaRepository.saveAll(productMapper.toProductEntities(products))

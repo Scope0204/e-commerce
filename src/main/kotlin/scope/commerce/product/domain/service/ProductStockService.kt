@@ -1,7 +1,6 @@
 package scope.commerce.product.domain.service
 
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import scope.commerce.order.domain.model.OrderProduct
 import scope.commerce.product.domain.model.ProductStock
 import scope.commerce.product.domain.repository.ProductStockRepository
@@ -10,6 +9,7 @@ import scope.commerce.product.domain.repository.ProductStockRepository
 class ProductStockService(
     private val productStockRepository: ProductStockRepository
 ) {
+
     fun getStockByProductId(productId: Long): ProductStock {
         return productStockRepository.findByProductId(productId)
     }
@@ -18,7 +18,7 @@ class ProductStockService(
         return productStockRepository.findByProductIds(productIds)
     }
 
-    @Transactional
+    // TODO: 삭제 예정. 직접 재고를 감소하지않음. StockHistory Domain Service 의 increaseStock(...)로 대체
     fun decrease(orderProducts: List<OrderProduct>) {
         for (orderProduct in orderProducts) {
             val productId = orderProduct.productId

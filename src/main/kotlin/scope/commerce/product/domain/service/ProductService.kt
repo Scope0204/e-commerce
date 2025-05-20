@@ -18,7 +18,8 @@ class ProductService(
             id = product.id,
             name = product.name,
             price = product.price,
-            quantity = product.quantity
+            quantity = product.quantity,
+            status = product.status
         )
     }
 
@@ -26,5 +27,12 @@ class ProductService(
     fun getProducts(page: Int, size: Int): Page<Product> {
         val pageable = PageRequest.of(page - 1, size)
         return productRepository.findAll(pageable)
+    }
+
+    // 상품 상태 업데이트(재고 만료)
+    fun updateSoldOut(productId: Long) {
+        val product = productRepository.findById(productId)
+        val updatedProduct = product.updateSoldOut()
+        productRepository.save(updatedProduct)
     }
 }

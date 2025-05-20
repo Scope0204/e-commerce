@@ -1,10 +1,13 @@
 package scope.commerce.product.domain.model
 
+import scope.commerce.common.type.product.ProductStatus
+
 data class Product(
     val id: Long?,
     val name: String,
     val price: Long,
-    val quantity: Long
+    val quantity: Long,
+    val status: ProductStatus
 ) {
 
     // 수량에 따른 주문 관리 여부
@@ -23,5 +26,10 @@ data class Product(
     fun applyDiscount(discountAmount: Long): Long {
         require(discountAmount in 0..price) { "할인 금액이 유효하지 않습니다." }
         return price - discountAmount
+    }
+
+    // 상품 재고 만료
+    fun updateSoldOut(): Product {
+        return this.copy(status = ProductStatus.SOLD_OUT)
     }
 }
