@@ -8,7 +8,6 @@ import scope.commerce.common.type.product.StockHistoryType
 @Table(name = "stock_history")
 class StockHistoryEntity(
     productId: Long,
-    orderId: Long,
     userId: Long,
     purchaseNumber: String,
     price: Long,
@@ -21,10 +20,6 @@ class StockHistoryEntity(
 
     @Column(name = "product_id", nullable = false)
     var productId: Long = productId
-        protected set
-
-    @Column(name = "order_id", nullable = false)
-    var orderId: Long = orderId
         protected set
 
     @Column(name = "user_id", nullable = false)

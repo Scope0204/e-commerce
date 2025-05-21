@@ -24,7 +24,6 @@ class StockHistoryService(
     fun increaseStock(stockHistory: StockHistory, totalQuantity: Long, perLimitTotalQuantity: Long): StockResult {
         val stock = Stock(
             productId = stockHistory.productId,
-            orderId = stockHistory.orderId,
             userId = stockHistory.userId,
             price = stockHistory.price,
             purchaseNumber = stockHistory.purchaseNumber,
@@ -34,8 +33,6 @@ class StockHistoryService(
         return if (validateTotalQuantity(totalQuantity, stock)) {
             // 3) 재고 사용량 증가 (Redis SADD)
             stockUsageRepository.addUsage(stock)
-            println(">>> 저장 직전 purchaseNumber = ${stock.purchaseNumber}")
-
             // 4) 히스토리 정보 추가
             stockHistoryRepository.save(stockHistory)
             // 재고 품절처리

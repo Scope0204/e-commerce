@@ -13,6 +13,7 @@ import java.time.LocalDateTime
 @Table(name = "orders")
 class OrderEntity(
     userEntity: UserEntity,
+    purchaseNumber: String,
     orderAt: LocalDateTime,
     status: OrderStatus,
     fromBucket: Boolean,
@@ -28,6 +29,10 @@ class OrderEntity(
     @JoinColumn(name = "user_id", nullable = false)
     var userEntity: UserEntity = userEntity
         internal set
+
+    @Column(name = "purchase_number", nullable = false)
+    var purchaseNumber: String = purchaseNumber
+        protected set
 
     @Column(name = "order_at", nullable = false)
     var orderAt: LocalDateTime = orderAt
